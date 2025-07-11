@@ -1,0 +1,26 @@
+
+
+.food-card-container{
+    border: 5px solid white;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.food-card-container:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.food-card-container.selected {
+    border: 5px solid #61dafb;
+}
+
+.food-card-container.not-selected{
+    border: 5px solid #b20000;
+}
