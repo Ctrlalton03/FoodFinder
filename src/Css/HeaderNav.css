@@ -5,21 +5,23 @@
     left: 0;
     width: 100%;
     z-index: 1000;
-    background: #333;
+    background: #FFF8E7;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .nav {
     display: flex;
+    overflow: hidden;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 1rem ;
+    width: 100%;
+    margin: 0;
+    border: 1px solid red;
 }
 
 .nav-brand h2 {
-    color: #fff;
+    color: #333333;
     margin: 0;
     font-size: 1.5rem;
     font-weight: bold;
@@ -58,19 +60,19 @@
     width: 30px;
     height: 24px;
     position: relative;
+    color: #333333;
 }
 
 .hamburger span {
     display: block;
     height: 3px;
     width: 100%;
-    background: #fff;
+    background: #333333;
     margin: 3px 0;
     transition: all 0.3s ease;
     transform-origin: center;
 }
 
-/* Hamburger animation when active */
 .hamburger.active span:nth-child(1) {
     transform: rotate(45deg) translate(6px, 6px);
 }
@@ -83,7 +85,6 @@
     transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* Mobile Navigation (Hidden by default) */
 .mobile-nav {
     position: fixed;
     top: 0;
