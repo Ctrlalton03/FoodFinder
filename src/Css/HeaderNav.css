@@ -11,13 +11,11 @@
 
 .nav {
     display: flex;
-    overflow: hidden;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem ;
-    width: 100%;
+    padding: 1rem;
     margin: 0;
-    border: 1px solid red;
+    box-sizing: border-box;
 }
 
 .nav-brand h2 {
@@ -73,6 +71,7 @@
     transform-origin: center;
 }
 
+/* Hamburger animation when active */
 .hamburger.active span:nth-child(1) {
     transform: rotate(45deg) translate(6px, 6px);
 }
@@ -139,7 +138,7 @@
     }
     
     .desktop-nav {
-        display: none;
+        display: none !important;
     }
     
     .hamburger {
