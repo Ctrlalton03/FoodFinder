@@ -1,6 +1,6 @@
 import "../Css/FoodCard.css";
 
-function FoodCard( {food, onFoodSelect, wasSelected} ) {
+function FoodCard( {food, onFoodSelect, wasSelected, handleUnselectedFood} ) {
 
 
 

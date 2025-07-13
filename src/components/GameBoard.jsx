@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Food from '../data/Food'
 import FoodCard from '../Components/FoodCard'
-
+import RoundIndicator from '../components/RoundIndicator'
 
 const GameBoard =() => {
     const [selectedFood, setSelectedFood] = useState(null);
@@ -13,11 +13,10 @@ const GameBoard =() => {
     }
 
 
+
+
     return(
         <>
-        <h2>Game Board</h2>
-        <p>Welcome to the Food Finder Game Board!</p>
-        <p>Here you can explore various food items.</p>
         <div className="food-list">
             <FoodCard 
                 key={Food[0].id}
@@ -31,7 +30,12 @@ const GameBoard =() => {
                 onFoodSelect = {handleFoodSelect}
                 wasSelected = {selectedFood === Food[1].id}
             />
+
         </div>
+        <RoundIndicator round={1} />
+        <p>Selected Food ID: {selectedFood}</p>
+        <p>Selected Food Name: {selectedFood ? Food.find(food => food.id === selectedFood).name : 'None'}</p>
+        <p>Click on a food item to select it.</p>
         </>
     )
 }

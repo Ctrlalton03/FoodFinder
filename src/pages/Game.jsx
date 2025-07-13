@@ -1,11 +1,18 @@
+import '../Css/GamePage.css';
 
+
+import GameBoard from "../components/GameBoard";
 
 const Game = () =>{
 
     return(
         <>
         <div>
-            <h1>FoodFinder Game</h1>
+            <div className='game-page-container'>
+                <h1>FoodFinder</h1>
+                <h2>Game Mode</h2>
+                < GameBoard />   
+            </div>
         </div>
         </>
     )

@@ -27,7 +27,7 @@ const HeaderNav = () => {
         <header className='header'>
             <nav className='nav'>
                 <div className='nav-brand'>
-                    <h2>FF</h2>
+                    <h2>FF.</h2>
                 </div>
                 {/*Hamburger Menu button */}
                 <button 
