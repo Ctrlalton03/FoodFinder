@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bitcount+Grid+Double:wght@100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
+
+
 body{
     color: #333333;
 }
@@ -43,16 +46,35 @@ body{
 .home-content h1{
     margin: 0;
     font-size: 2.5rem;
+    font-family: 'Bitcount Grid Double', sans-serif;
 }
 
+.home-content h3{
+    margin: 5px ;
+    font-size: 1.3rem;
+    font-family: "Bitcount Grid Double", sans-serif;
+}
+
+.foodfinder-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+}
+
+
 .foodfinder-description p {
+   
+    font-family: 'Playfair', serif;
+    font-size: 1rem;
+    margin: 5px;
     margin: 0;
 }
 .button-container {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
 }
 
 .button-container button {
@@ -76,21 +98,38 @@ body{
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 20px;
+    padding: 15px;
     height: 100%;
 }
 
 .home-section-2 h2 {
-    
+    font-family: "Bitcount Grid Double", sans-serif;
+    font-weight: 700;
     margin: 10px;
     font-size: 2rem;
 }
 
 .home-section-2 p {
-    margin: 10px;
+    font-family: "Playfair", sans-serif;
     font-weight: 800;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     line-height: 1;
+}
+
+.game-rules {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+}
+
+.game-rules p{
+    font-family: "Playfair", sans-serif;
+    font-weight: 800;
+    font-size: 1.rem;
+    margin: 5px 0;
 }
 
 .home-section-2 ul {
@@ -104,6 +143,8 @@ body{
 }
 
 .home-section-2 ul li {
+    font-family: "playfair", sans-serif;
+    font-weight: 400;
     width: 90%;
     padding: 10px;
 }

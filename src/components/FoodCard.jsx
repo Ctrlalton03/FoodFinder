@@ -1,6 +1,6 @@
 import "../Css/FoodCard.css";
 
-function FoodCard( {food, onFoodSelect, wasSelected, handleUnselectedFood} ) {
+function FoodCard( {food, onFoodSelect, wasSelected} ) {
 
 
 
@@ -8,12 +8,11 @@ function FoodCard( {food, onFoodSelect, wasSelected, handleUnselectedFood} ) {
     return (
         <>
         <div 
-            className={`food-card-container ${wasSelected ? 'selected' : 'not-selected'}`}
-            onClick={() => onFoodSelect(food)}
+        className={`food-card-container ${wasSelected ? 'selected' : 'not-selected'}`}
+        onClick={() => onFoodSelect(food)}
             >
-            <h1>Food Card</h1>
+            <img src={food.photo} alt={food.name} className="food-image" />
             <h2>{food.name}</h2>
-            <h2>{food.category}</h2>
         </div>
         </>
     )

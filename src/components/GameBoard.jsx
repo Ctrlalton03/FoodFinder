@@ -1,41 +1,69 @@
-import { useState } from 'react'
+import { use, useEffect, useState } from 'react'
+import { Shuffle } from 'lucide-react'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 import Food from '../data/Food'
 import FoodCard from '../Components/FoodCard'
 import RoundIndicator from '../components/RoundIndicator'
 
-const GameBoard =() => {
+const GameBoard =({ round, foods, onFoodSelected, onShuffle }) => {
+    
+        useEffect(() => {
+          AOS.init({ duration: 800, once: true });
+        }, []);
+      
+
+
     const [selectedFood, setSelectedFood] = useState(null);
+    const [shownFood, setShownFood] = useState(foods);
+    const [isShuffled, setIsShuffled] = useState(false);
+
+  useEffect(() => {
+        setShownFood(foods);
+        setSelectedFood(null);
+    }, [foods]);
+
+    
+
 
     const handleFoodSelect = (selectedFood) => {
         setSelectedFood(selectedFood.id);
         console.log("Selected food:", selectedFood.name);
+
+        setTimeout(() => {
+            onFoodSelected(selectedFood);
+        }, 300);
 
     }
 
 
 
 
+
     return(
         <>
-        <div className="food-list">
-            <FoodCard 
-                key={Food[0].id}
-                food = {Food[0]} 
-                onFoodSelect = {handleFoodSelect}
-                wasSelected = {selectedFood === Food[0].id}
-            />
-            <FoodCard 
-                key={Food[1].id}
-                food = {Food[1]} 
-                onFoodSelect = {handleFoodSelect}
-                wasSelected = {selectedFood === Food[1].id}
-            />
+        <div  data-aos="fade-up" className="food-list ">
+            <div>
+                {shownFood.map((food, index) => (
+                    <FoodCard 
+                        key={index} 
+                        food={food} 
+                        data-aos-delay={index * 100}
+                        onFoodSelect={handleFoodSelect} 
+                        wasSelected={selectedFood === food.id}
+                    />
+                ))}
+            </div>
+            <button 
+                className="shuffle-button"
+                onClick={onShuffle}
+                disabled={isShuffled}
+            >
+                {isShuffled ? 'Shuffling...' : "Shuffle Food"} 
+            </button>
 
         </div>
-        <RoundIndicator round={1} />
-        <p>Selected Food ID: {selectedFood}</p>
-        <p>Selected Food Name: {selectedFood ? Food.find(food => food.id === selectedFood).name : 'None'}</p>
-        <p>Click on a food item to select it.</p>
+        <RoundIndicator round={round} />
         </>
     )
 }
