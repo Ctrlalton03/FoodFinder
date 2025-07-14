@@ -3,7 +3,7 @@ import { Shuffle } from 'lucide-react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import Food from '../data/Food'
-import FoodCard from '../Components/FoodCard'
+import FoodCard from '../components/FoodCard'
 import RoundIndicator from '../components/RoundIndicator'
 
 const GameBoard =({ round, foods, onFoodSelected, onShuffle }) => {
