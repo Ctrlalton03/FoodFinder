@@ -6,8 +6,14 @@ import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import GameBoard from "../components/GameBoard";
+import { useGeolocation } from '../hooks/useGeolocation.js';
+
 
 const Game = () =>{
+
+    const {location, locationError, loading, getCurrentLocation} = useGeolocation();
+
+    console.log({location, locationError, loading})
 
     const [gameState, setGameState] = useState({
         round: 1,
@@ -44,6 +50,21 @@ const Game = () =>{
         <div>
             <div data-aos="fade-up" className='game-page-container'>
                 <h1>Game Mode</h1>
+                
+                {/* Location Status */}
+                <div className="location-status">
+                    {loading && <p>Getting your location...</p>}
+                    {locationError && (
+                        <div className="location-error">
+                            <p>Location Error: {locationError}</p>
+                            <button onClick={getCurrentLocation}>Retry Location</button>
+                        </div>
+                    )}
+                    {location && (
+                        <p>Location found! We'll suggest nearby restaurants when you complete the game.</p>
+                    )}
+                </div>
+
                 {gameState.gameCompleted ? (
                     <div className="game-completed">
                         <h2>Congratulations! You have selected your food!</h2>
