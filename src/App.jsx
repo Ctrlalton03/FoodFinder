@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import GameBoard from './components/GameBoard';
 import './App.css'
 import Home from './pages/Home';
 import Game from './pages/Game';
-import HeaderNav from './Components/HeaderNav';
+import HeaderNav from './components/HeaderNav';
 
 function App() {
 
