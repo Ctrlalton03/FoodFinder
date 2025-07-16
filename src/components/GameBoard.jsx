@@ -6,6 +6,7 @@ import Food from '../data/Food'
 import FoodCard from '../components/FoodCard'
 import RoundIndicator from '../components/RoundIndicator'
 
+
 const GameBoard =({ round, foods, onFoodSelected, onShuffle }) => {
     
         useEffect(() => {

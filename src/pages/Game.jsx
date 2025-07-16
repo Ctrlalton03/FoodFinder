@@ -7,6 +7,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import GameBoard from "../components/GameBoard";
 import { useGeolocation } from '../hooks/useGeolocation.js';
+import ResturantList from '../components/ResturantList.jsx';
 
 // Main Game component
 const Game = () => {
@@ -75,6 +76,7 @@ const Game = () => {
                         <img src={gameState.winner?.photo} alt={gameState.winner?.name} className="winner-image" />
                         <p>We will now suggest restaurants or food spots nearby that serve {gameState.winner.name}.</p>
                         {/* Restart button resets the game state */}
+                        < ResturantList selectedFood={gameState.winner} userLocation={location}/>
                         <button onClick={() => setGameState({
                             round: 1,
                             currentFoods: getRandomFood(Food, 3),
@@ -92,7 +94,11 @@ const Game = () => {
                         onFoodSelected={handleFoodSelected}
                         onShuffle={handleShuffle}
                     />
+
+                   
+
                 )}    
+                
             </div>
         </div>
         </>
