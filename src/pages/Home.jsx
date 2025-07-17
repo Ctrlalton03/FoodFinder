@@ -18,13 +18,13 @@ const Home = () => {
         <div className='home-container'>
             <section className='home-section-1'>
             <div data-aos="fade-up" className='home-content'>
-                <h1>FoodFinder</h1>
+                <h1>Flavor Fight</h1>
                 <div className='main-image-container'>
                     <img src={MainImage} alt="Delicious food" className="main-image" />
                 </div>
                 <h3>Can't decide what to eat? Let us help!</h3>
                 <div className="foodfinder-description">
-                    <p>Welcome to Food Finder, your go-to web app for discovering delicious food options!</p>
+                    <p>Welcome to Flavor Fight, your go-to web app for discovering delicious food options!</p>
                     <p>Explore a wide variety of food choices and find your next meal with ease.</p>
                     <p>Play 3 Rounds to elimate options and discover the perfect meal your in the mood for!</p>
                 </div>

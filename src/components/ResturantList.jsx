@@ -1,4 +1,4 @@
-
+import '../Css/GamePage.css';
 import { useState } from "react";
 
 function ResturantList ({ selectedFood, userLocation  }) {
@@ -7,13 +7,14 @@ function ResturantList ({ selectedFood, userLocation  }) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("");
 
+    const apiKey = "AIzaSyCrPg8mp6zyogXyi8dHhwmODopDYxAh4dg";
 
     const fetchRestuarants = async () => {
         setLoading(true) // this will set the loading state to true and show the loading spinner
         setError(""); // reset any previous errors
 
         const url = "https://places.googleapis.com/v1/places:searchText";
-        const apiKey = "AIzaSyCrPg8mp6zyogXyi8dHhwmODopDYxAh4dg";
+        
 
         const body = {
             textQuery: `${selectedFood.name} restaurants `,
@@ -34,7 +35,7 @@ function ResturantList ({ selectedFood, userLocation  }) {
                 headers: {
                     "Content-Type": "application/json",
                     "X-Goog-Api-Key": apiKey,
-                    "X-Goog-FieldMask": "places.displayName,places.formattedAddress,places.rating"
+                    "X-Goog-FieldMask": "places.displayName,places.formattedAddress,places.rating,places.photos"
                 },
                 body: JSON.stringify(body)
             });
@@ -61,14 +62,22 @@ function ResturantList ({ selectedFood, userLocation  }) {
                     {loading ? "Searching for restaurants..." : "Search for resturants"}
                 </button>
                 {error && <p className="error">{error}</p>}
-                <ul>
-                    {resturants.map((restaurant) => (
-                        <li key={restaurant.placeId || restaurant.id}>
+                <ul className="restaurant-list-container">
+                    {resturants.map((restaurant) => {
+
+                        const photoReference = restaurant.photos?.[0]?.name;
+                        const photoUrl = photoReference ? `https://places.googleapis.com/v1/${photoReference}/media?maxWidthPx=400&key=${apiKey}` : "https://via.placeholder.com/150";
+
+
+                        return (
+                            <li key={restaurant.placeId || restaurant.id} className="restaurant-item">
+                                <img src={photoUrl} alt={restaurant.displayName?.text || "Restaurant"} className="restaurant-image" />
                             <h3>{restaurant.displayName?.text}</h3>
                             <p>{restaurant.formattedAddress}</p>
                             <p>Rating: {restaurant.rating}</p>
                         </li>
-                    ))}
+                        );
+                    })}
                 </ul>
                 
                 
