@@ -63,3 +63,10 @@
     margin: 15px;
     background-color: #f9f9f9;
 }
+
+.restaurant-image{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
