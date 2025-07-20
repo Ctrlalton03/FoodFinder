@@ -28,7 +28,6 @@
 
 .winner-image {
     width: 100%;
-    max-width: 60%;
     min-height: 200px;
     object-fit: cover;
     margin-top: 20px;
@@ -46,20 +45,64 @@
     cursor: pointer;
 }
 
-.restaurant-list-container{
+.restaurant-list-wrapper {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    list-style: none;
-    padding: 0px;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+    overflow: hidden;
 }
 
-.restaurant-item{
-    width: 90%;
+.restaurant-list-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.restaurant-item {
+    font-family: "Playfair", serif;
+    font-size: 1.2rem;
+    min-width: 250px;
+    max-width: 350px;
+    width: 100%;
+    flex: 0 0 auto;
     padding: 10px;
     border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin: 15px;
     background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+.restaurant-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+
+.Restaurant-Rating{
+    font-family: "Playfair", serif;
+    font-size: 1.2rem;
+    color: #ff9800;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
+.game-completed{
+    font-family: "Bitcount Grid Double", sans-serif;
+    padding: 10px;
+    color: #333333;
+    margin-top: 20px;
 }

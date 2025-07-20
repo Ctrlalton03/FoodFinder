@@ -6,6 +6,7 @@ function ResturantList ({ selectedFood, userLocation  }) {
     const [resturants, setRestaurants] = useState([]);
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("");
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     const apiKey = "AIzaSyCrPg8mp6zyogXyi8dHhwmODopDYxAh4dg";
 
@@ -46,6 +47,7 @@ function ResturantList ({ selectedFood, userLocation  }) {
 
             const data = await response.json();
             setRestaurants(data.places || []);
+            setCurrentIndex(0);
         } catch (error) {
             setError(error.message);    
         } finally {
@@ -53,39 +55,50 @@ function ResturantList ({ selectedFood, userLocation  }) {
         }
     }
 
+    const visibleRestaurants = resturants.slice(currentIndex, currentIndex + 1);
 
-
-        return(
-            <div>
-                <h2> Nearby Resturants Serving {selectedFood?.name }</h2>
-                <button onClick={fetchRestuarants} disabled={loading}> 
-                    {loading ? "Searching for restaurants..." : "Search for resturants"}
+    return (
+        <div>
+            <h2>Nearby Restaurants Serving {selectedFood?.name}</h2>
+            <button onClick={fetchRestuarants} disabled={loading}>
+                {loading ? "Searching for restaurants..." : "Search for restaurants"}
+            </button>
+            {error && <p className="error">{error}</p>}
+            <div className="restaurant-list-wrapper">
+                <button
+                    onClick={() => setCurrentIndex(i => Math.max(i - 1, 0))}
+                    disabled={currentIndex === 0 || loading}
+                    style={{ height: '100%' }}
+                >
+                    ◀
                 </button>
-                {error && <p className="error">{error}</p>}
                 <ul className="restaurant-list-container">
-                    {resturants.map((restaurant) => {
-
+                    {visibleRestaurants.map((restaurant) => {
                         const photoReference = restaurant.photos?.[0]?.name;
-                        const photoUrl = photoReference ? `https://places.googleapis.com/v1/${photoReference}/media?maxWidthPx=400&key=${apiKey}` : "https://via.placeholder.com/150";
-
-
+                        const photoUrl = photoReference
+                            ? `https://places.googleapis.com/v1/${photoReference}/media?maxWidthPx=400&key=${apiKey}`
+                            : "https://via.placeholder.com/150";
                         return (
                             <li key={restaurant.placeId || restaurant.id} className="restaurant-item">
                                 <img src={photoUrl} alt={restaurant.displayName?.text || "Restaurant"} className="restaurant-image" />
-                            <h3>{restaurant.displayName?.text}</h3>
-                            <p>{restaurant.formattedAddress}</p>
-                            <p>Rating: {restaurant.rating}</p>
-                        </li>
+                                <h3>{restaurant.displayName?.text}</h3>
+                                <p>{restaurant.formattedAddress}</p>
+                                <p className='Restaurant-Rating'>Rating: {restaurant.rating}</p>
+                            </li>
                         );
                     })}
                 </ul>
-                
-                
+                <button
+                    onClick={() => setCurrentIndex(i => Math.min(i + 1, resturants.length - 1))}
+                    disabled={currentIndex >= resturants.length - 1 || loading}
+                    style={{ height: '100%' }}
+                >
+                    ▶
+                </button>
             </div>
-        )
-    
-    
-    }
+        </div>
+    );
+}
 
-    export default ResturantList;
+export default ResturantList;
 // This component fetches and displays a list of restaurants based on the selected food and user's location
