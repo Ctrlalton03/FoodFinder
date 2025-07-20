@@ -84,3 +84,20 @@
     font-family: "Bitcount Grid Double", sans-serif;
     padding: 20px;
 }
+.restaurant-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+
+.Restaurant-Rating{
+    font-family: "Playfair", serif;
+    font-size: 1.2rem;
+    color: #ff9800;
+    font-weight: bold;
+    margin-top: 10px;
+}
