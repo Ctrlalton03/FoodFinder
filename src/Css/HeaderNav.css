@@ -149,4 +149,28 @@
     .hamburger {
         display: flex;
     }
+
+    .desktop-nav li a {
+        color: black;
+    }
+
+}
+
+@media (min-width: 769px) {
+    .hamburger {
+        display: none;
+    }
+    
+    .mobile-nav {
+        display: none;
+    }
+    
+    .desktop-nav {
+        display: flex;
+    }
+
+    .desktop-nav li a {
+        color: black;
+        margin-right: 20px;
+    }
 }

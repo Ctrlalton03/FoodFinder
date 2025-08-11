@@ -9,23 +9,20 @@ import GameBoard from "../components/GameBoard";
 import { useGeolocation } from '../hooks/useGeolocation.js';
 import ResturantList from '../components/ResturantList.jsx';
 
-// Main Game component
 const Game = () => {
-    // Custom hook for geolocation
+    
     const { location, locationError, loading, getCurrentLocation } = useGeolocation();
 
-    // Log location status for debugging
+   
     console.log({ location, locationError, loading });
 
-    // Main game state: round, current food options, winner, and completion status
     const [gameState, setGameState] = useState({
         round: 1,
-        currentFoods: getRandomFood(Food, 3), // Start with 3 random foods
+        currentFoods: getRandomFood(Food, 3), 
         winner: null,
         gameCompleted: false,
     });
 
-    // Called when a food is selected; advances the round or ends the game
     const handleFoodSelected = (selectedFood) => {
         const newGameState = advanceRound(selectedFood, Food, gameState.round);
         setGameState(newGameState);
@@ -35,7 +32,6 @@ const Game = () => {
         }
     };
 
-    // Shuffle button handler: picks 3 new random foods from all foods
     const handleShuffle = () => {
         setGameState((prev) => ({
             ...prev,
@@ -43,7 +39,6 @@ const Game = () => {
         }));
     };
 
-    // Initialize AOS animations on mount
     useEffect(() => {
         AOS.init({ duration: 800, once: true });
     }, []);
@@ -54,7 +49,6 @@ const Game = () => {
             <div data-aos="fade-up" className='game-page-container'>
                 <h1>Game Mode</h1>
                 
-                {/* Location Status */}
                 <div className="location-status">
                     {loading && <p>Getting your location...</p>}
                     {locationError && (

@@ -5,6 +5,7 @@ import 'aos/dist/aos.css'
 import Food from '../data/Food'
 import FoodCard from '../components/FoodCard'
 import RoundIndicator from '../components/RoundIndicator'
+import '../Css/GameBoard.css'
 
 
 const GameBoard =({ round, foods, onFoodSelected, onShuffle }) => {
@@ -44,7 +45,7 @@ const GameBoard =({ round, foods, onFoodSelected, onShuffle }) => {
     return(
         <>
         <div  data-aos="fade-up" className="food-list ">
-            <div>
+            <div className='food-list-header'>
                 {shownFood.map((food, index) => (
                     <FoodCard 
                         key={index} 

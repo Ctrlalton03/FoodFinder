@@ -36,7 +36,7 @@ function ResturantList ({ selectedFood, userLocation  }) {
                 headers: {
                     "Content-Type": "application/json",
                     "X-Goog-Api-Key": apiKey,
-                    "X-Goog-FieldMask": "places.displayName,places.formattedAddress,places.rating,places.photos"
+                    "X-Goog-FieldMask": "places.displayName,places.formattedAddress,places.rating,places.photos,places.types,places.priceLevel,places.userRatingCount"
                 },
                 body: JSON.stringify(body)
             });
@@ -53,6 +53,34 @@ function ResturantList ({ selectedFood, userLocation  }) {
         } finally {
             setLoading(false); // Set loading to false after the fetch is complete
         }
+    }
+
+    function sortResturant(place){
+        const fastFoodKeywords = ["fast food", "burger", "pizza", "taco", "chicken", "drive-thru", "takeaway"]
+        const sitDownKeywords = ["restaurant", "diner", "cafe", "bistro", "brasserie", "table-service", "fine dining"];
+
+
+        const name = place.displayName?.text?.toLowerCase() || "";
+
+        if (
+            place.types?.includes("meal_takeaway") ||
+            (place.priceLevel !== undefined && place.priceLevel <= 2) ||
+            fastFoodKeywords.some(keyword => name.includes(keyword))
+        ){
+            return "Fast Food";
+
+        }
+
+        if(
+            place.types?.includes("restaurant") ||
+            sitDownKeywords.some(keyword => name.includes(keyword))
+        ){
+            return "Sit Down";
+        }
+
+        return "Other";
+
+
     }
 
     const visibleRestaurants = resturants.slice(currentIndex, currentIndex + 1);
@@ -78,12 +106,15 @@ function ResturantList ({ selectedFood, userLocation  }) {
                         const photoUrl = photoReference
                             ? `https://places.googleapis.com/v1/${photoReference}/media?maxWidthPx=400&key=${apiKey}`
                             : "https://via.placeholder.com/150";
+
+                        const category = sortResturant(restaurant);
                         return (
                             <li key={restaurant.placeId || restaurant.id} className="restaurant-item">
                                 <img src={photoUrl} alt={restaurant.displayName?.text || "Restaurant"} className="restaurant-image" />
                                 <h3>{restaurant.displayName?.text}</h3>
                                 <p>{restaurant.formattedAddress}</p>
                                 <p className='Restaurant-Rating'>Rating: {restaurant.rating}</p>
+                                <p className='Restaurant-Category'>Category: {category}</p>
                             </li>
                         );
                     })}
@@ -101,4 +132,3 @@ function ResturantList ({ selectedFood, userLocation  }) {
 }
 
 export default ResturantList;
-// This component fetches and displays a list of restaurants based on the selected food and user's location
